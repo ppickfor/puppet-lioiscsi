@@ -16,7 +16,7 @@
 #
 # Author Name <fchioralia@gmail.com>
 #
-class lio-iscsi{
+class lioiscsi{
 
      service { 'target':
         ensure => running,

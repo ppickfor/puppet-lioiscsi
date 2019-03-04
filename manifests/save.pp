@@ -1,7 +1,7 @@
-class lio-iscsi::save
+class lioiscsi::save
 {
 
-include lio-iscsi
+include lioiscsi
 
   exec { "save":
     command     => "targetctl save",

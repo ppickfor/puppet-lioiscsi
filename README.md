@@ -1,4 +1,4 @@
-# puppet-lio-iscsi
+# puppet-lioiscsi
 targetcli from puppet
 
 #### Table of Contents
@@ -25,7 +25,7 @@ First add a backstore (block, fileio, pscsi, ramdisk).
 
 fileio example:
 ```
-     lio-iscsi::targetcli::createbackstore{"iscsi-5g":
+     lioiscsi::targetcli::createbackstore{"iscsi-5g":
              name        => "iscsi-5g",
              type        => "fileio"
              size        => "5G",
@@ -36,7 +36,7 @@ fileio example:
 ```
 block example:
 ```
-     lio-iscsi::targetcli::createbackstore{"iscsi-block":
+     lioiscsi::targetcli::createbackstore{"iscsi-block":
              name        => "iscsi-block",
              type        => "block"
              file_or_dev => "/dev/sdb1",
@@ -45,7 +45,7 @@ block example:
 ```
 pscsi example:
 ```
-     lio-iscsi::targetcli::createbackstore{"iscsi-pscsi":
+     lioiscsi::targetcli::createbackstore{"iscsi-pscsi":
              name        => "iscsi-pscsi",
              type        => "pscsi"
              file_or_dev => "/dev/disk/by-path/pci-0000\:00\:01.1-ata-2.1"
@@ -53,7 +53,7 @@ pscsi example:
 ```
 ramdisk example:
 ```
-     lio-iscsi::targetcli::createbackstore{"iscsi-ram":
+     lioiscsi::targetcli::createbackstore{"iscsi-ram":
              name        => "iscsi-ram",
              type        => "ramdisk"
              size        => "5G",
@@ -63,7 +63,7 @@ ramdisk example:
 
 Then create the target
 ```
-     lio-iscsi::targetcli::createiscsitarget{"testiscsi":
+     lioiscsi::targetcli::createiscsitarget{"testiscsi":
             target_name => "iqn.2016-11.net.example:target1",
             tpg         => "tpg1",
             tpg_luns    => ["fileio/iscsi-5g"],

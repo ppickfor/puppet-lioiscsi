@@ -1,9 +1,9 @@
-define lio-iscsi::targetcli::tpg::portals(
+define lioiscsi::targetcli::tpg::portals(
     $tpg         = undef,
     $target_name = undef,
 )
 {
-  include ::lio-iscsi
+  include ::lioiscsi
 
   $portal_parts     = split($title, ':')
   $portal_ip        = "${portal_parts[0]}"

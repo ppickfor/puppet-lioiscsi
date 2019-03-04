@@ -1,7 +1,7 @@
 #
-# == Define: lio-iscsi::targetcli::createiscsitarget
+# == Define: lioiscsi::targetcli::createiscsitarget
 #
-# 'lio-iscsi::targetcli::createiscsitarget': Creates a new target. 
+# 'lioiscsi::targetcli::createiscsitarget': Creates a new target. 
 # The wwn format depends on the transport(s)
 # supported by the fabric module. If the wwn is ommited, then a
 # target will be created using either a randomly generated WWN of the
@@ -24,7 +24,7 @@
 #
 # === Examples
 #
-#    lio-iscsi::targetcli::createiscsitarget{"name":
+#    lioiscsi::targetcli::createiscsitarget{"name":
 #        $target_name = undef,
 #    }
 #
@@ -48,7 +48,7 @@
 # Default: true
 
 
-define lio-iscsi::targetcli::createiscsitarget(
+define lioiscsi::targetcli::createiscsitarget(
     $target_name = undef,
     $tpg         = 'tpg1',
     $tpg_luns    = undef,
@@ -64,7 +64,7 @@ define lio-iscsi::targetcli::createiscsitarget(
   if $target_name !~ /^iqn\.([1][9][0-9]{2}|[2][0-9]{3})-([0][1-9]|[1][0-2])\.([a-z]+)\.([a-z]+)\:(\w+)$/ and $target_name !~ /^naa\.[a-f0-9]{16}$/ and $target_name !~ /^eui\.[a-f0-9]{16}$/
   {  fail(" WWN not valid as: iqn (iqn.2016-11.net.domain:t1), naa (naa.50014057f822d991), eui (eui.50014057f822d991)") }
 
-include ::lio-iscsi
+include ::lioiscsi
 
   exec { "createiscsitarget_$name":
     command     => "targetcli iscsi/ create $target_name",
@@ -73,7 +73,7 @@ include ::lio-iscsi
     notify      => Exec['save'],
     require     => Package['targetcli'],
   }->
-  lio-iscsi::targetcli::createtpg{"${target_name}_${tpg}":
+  lioiscsi::targetcli::createtpg{"${target_name}_${tpg}":
     tpg                        => $tpg,
     target_name                => $target_name,
     tpg_luns                   => $tpg_luns,

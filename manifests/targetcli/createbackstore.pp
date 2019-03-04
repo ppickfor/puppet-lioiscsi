@@ -1,7 +1,7 @@
 #
-# == Define: lio-iscsi::targetcli::createfileio
+# == Define: lioiscsi::targetcli::createfileio
 #
-# 'lio-iscsi::targetcli::createbackstore': configure a lio iscsi backstores/fileio.
+# 'lioiscsi::targetcli::createbackstore': configure a lio iscsi backstores/fileio.
 #
 # This class follows the recommendations of the "Puppet Labs Style Guide":
 # http://docs.puppetlabs.com/guides/style_guide.html . If you want to
@@ -16,7 +16,7 @@
 #
 # === Examples
 #
-#    lio-iscsi::targetcli::createfileio{"name":
+#    lioiscsi::targetcli::createfileio{"name":
 #        name => "backstore_name",
 #        size => "1G",
 #        file_or_dev => "/home/test.img"
@@ -43,7 +43,7 @@
 # Required.
 #
 
-define lio-iscsi::targetcli::createbackstore(
+define lioiscsi::targetcli::createbackstore(
     $name = undef,
     $file_or_dev = undef,
     $write_back = true,
@@ -58,7 +58,7 @@ define lio-iscsi::targetcli::createbackstore(
   if $type !~ /^(fileio|block|pscsi|ramdisk)$/
   {  fail("This type not supported! Only fileio, block, pscsi or ramdisk")  }
 
-  include ::lio-iscsi
+  include ::lioiscsi
   case $type
   {
     "fileio": {
