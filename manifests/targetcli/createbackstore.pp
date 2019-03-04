@@ -16,8 +16,7 @@
 #
 # === Examples
 #
-#    lioiscsi::targetcli::createfileio{"name":
-#        name => "backstore_name",
+#    lioiscsi::targetcli::createfileio{"backstore_name":
 #        size => "1G",
 #        file_or_dev => "/home/test.img"
 #     }
@@ -44,17 +43,15 @@
 #
 
 define lioiscsi::targetcli::createbackstore(
-    $name = undef,
-    $file_or_dev = undef,
-    $write_back = true,
-    $size = undef,
-    $readonly = false,
-    $nullio = false,
-    $sparse = true,
-    $type = undef,
+    String $file_or_dev,
+    Optional[String] $type,
+    Optional[String] $size = undef,
+    Boolean $write_back = true,
+    Boolean $readonly = false,
+    Boolean $nullio = false,
+    Boolean $sparse = true,
 )
 {
-  validate_string($name)
   if $type !~ /^(fileio|block|pscsi|ramdisk)$/
   {  fail("This type not supported! Only fileio, block, pscsi or ramdisk")  }
 
@@ -63,8 +60,6 @@ define lioiscsi::targetcli::createbackstore(
   {
     "fileio": {
 
-      validate_bool($write_back)
-      validate_bool($sparse)
       if !is_integer($size) and $size !~ /^\d+(B|k|K|kBOA|KB|m|M|mB|MB|g|G|gB|GB|t|T|tB|TB)$/
       {  fail("size error
       SIZE SYNTAX
@@ -89,8 +84,6 @@ define lioiscsi::targetcli::createbackstore(
      }
     "block": {
 
-      validate_string($file_or_dev)
-      validate_bool($readonly)
           exec { "createblock_$name":
             command     => "targetcli backstores/block/ create name=$name dev=$file_or_dev readonly=$readonly",
             unless      => "targetcli backstores/block/$name",
