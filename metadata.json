@@ -1,6 +1,6 @@
 {
   "name": "lio-iscsi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "fchioralia@gmail",
   "summary": "targetcli with puppet",
   "license": "Apache 2.0",
