@@ -5,10 +5,10 @@
 # The wwn format depends on the transport(s)
 # supported by the fabric module. If the wwn is ommited, then a
 # target will be created using either a randomly generated WWN of the
-# proper type, or the first unused WWN in the list of possible WWNs if
+# proper stype, or the first unused WWN in the list of possible WWNs if
 # one is available. If WWNs are constrained to a list (i.e. for hardware
 # targets addresses) and all WWNs are in use, the target creation will
-# fail. Use the info command to get more information abour WWN type
+# fail. Use the info command to get more information abour WWN stype
 # and possible values.
 #
 # This class follows the recommendations of the "Puppet Labs Style Guide":

@@ -27,7 +27,7 @@ fileio example:
 ```
      lioiscsi::targetcli::createbackstore{"iscsi-5g":
              name        => "iscsi-5g",
-             type        => "fileio"
+             stype        => "fileio"
              size        => "5G",
              file_or_dev => "/home/5g.img"
              write_back  => "true",
@@ -38,7 +38,7 @@ block example:
 ```
      lioiscsi::targetcli::createbackstore{"iscsi-block":
              name        => "iscsi-block",
-             type        => "block"
+             stype        => "block"
              file_or_dev => "/dev/sdb1",
              readonly    => "false",
      }
@@ -47,7 +47,7 @@ pscsi example:
 ```
      lioiscsi::targetcli::createbackstore{"iscsi-pscsi":
              name        => "iscsi-pscsi",
-             type        => "pscsi"
+             stype        => "pscsi"
              file_or_dev => "/dev/disk/by-path/pci-0000\:00\:01.1-ata-2.1"
      }
 ```
@@ -55,7 +55,7 @@ ramdisk example:
 ```
      lioiscsi::targetcli::createbackstore{"iscsi-ram":
              name        => "iscsi-ram",
-             type        => "ramdisk"
+             stype        => "ramdisk"
              size        => "5G",
              nullio      => "false",
      }

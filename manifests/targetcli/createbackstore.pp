@@ -27,7 +27,7 @@
 # [*name*] The name for the new backstore.
 # Should be a string that uniqe identify the backstore.
 #
-# [*file_or_dev*] The type of the backstore. Can be file or dev.
+# [*file_or_dev*] The stype of the backstore. Can be file or dev.
 # Could be for example: file: "/home/test.img" or dev: "/dev/sdb".
 #
 # [*size*] The size for the backstore:
@@ -39,7 +39,7 @@
 # [*write_back*] Specify if write back is activated.
 # Default: true
 #
-# [*type*] Should be fileio, block, pscsi, ramdisk.
+# [*stype*] Should be fileio, block, pscsi, ramdisk.
 # Required.
 #
 
@@ -51,15 +51,15 @@ define lioiscsi::targetcli::createbackstore(
     $readonly = false,
     $nullio = false,
     $sparse = true,
-    $type = undef,
+    $stype = undef,
 )
 {
   validate_string($name)
-  if $type !~ /^(fileio|block|pscsi|ramdisk)$/
-  {  fail("This type not supported! Only fileio, block, pscsi or ramdisk")  }
+  if $stype !~ /^(fileio|block|pscsi|ramdisk)$/
+  {  fail("This stype not supported! Only fileio, block, pscsi or ramdisk")  }
 
   include ::lioiscsi
-  case $type
+  case $stype
   {
     "fileio": {
 
